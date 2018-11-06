@@ -7,6 +7,7 @@ import org.springframework.cache.annotation.EnableCaching;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
@@ -17,8 +18,7 @@ import redis.clients.jedis.JedisPoolConfig;
  * @Description:
  */
 @Configuration
-@EnableCaching
-public class RedisConfig extends CachingConfigurerSupport {
+public class RedisConfig  {
     @Value("${spring.redis.host}")
     private  String host;
     @Value("${spring.redis.password}")
@@ -31,8 +31,16 @@ public class RedisConfig extends CachingConfigurerSupport {
     private int maxIdle;
     @Value("${spring.redis.jedis.pool.max-wait}")
     private long maxWaitMillis;
-
-
+//   用于redisTemplate配置，必不可少
+    @Bean
+    JedisConnectionFactory jedisConnectionFactory() {
+        JedisConnectionFactory factory = new JedisConnectionFactory();
+        factory.setHostName(host);
+        factory.setPort(port);
+        factory.setTimeout(timeout);
+        factory.setPassword(password);
+        return factory;
+    }
     @Bean
     public JedisPool redisPoolFactory() {
         JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
