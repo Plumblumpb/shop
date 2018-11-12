@@ -16,6 +16,11 @@ public class ProductInventory {
      */
     private Long inventoryCnt;
 
+    public ProductInventory(Integer productId,Long inventoryCnt){
+        this.inventoryCnt = inventoryCnt;
+        this.productId = productId;
+    }
+
     public Integer getProductId() {
         return productId;
     }

@@ -53,10 +53,18 @@ public class RequestQueue {
     /**
      * 返回内存队列长度
      */
-    public int queueSize(List<ArrayBlockingQueue<Request>> list){
+    public int queueSize() {
         return list.size();
     }
 
+    /**
+     * 获取内存队列
+     * @param index
+     * @return
+     */
+    public ArrayBlockingQueue<Request> getQueue(int index) {
+        return list.get(index);
+    }
     /**
      * setter和getter
      * @return

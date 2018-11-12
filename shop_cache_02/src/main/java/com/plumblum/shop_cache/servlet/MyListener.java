@@ -1,5 +1,6 @@
 package com.plumblum.shop_cache.servlet;
 
+import com.plumblum.shop_cache.Thread.RequestProcessorThreadPool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.web.servlet.ServletComponentScan;
@@ -23,7 +24,8 @@ public class MyListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-
+        // 初始化工作线程池和内存队列
+        RequestProcessorThreadPool.init();
     }
 
     @Override
