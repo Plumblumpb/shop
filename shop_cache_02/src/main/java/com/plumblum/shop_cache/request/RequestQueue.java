@@ -9,7 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * @Auther: cpb
  * @Date: 2018/11/8 09:12
- * @Description:
+ * @Description:包装内存队列，作用：去重
  */
 public class RequestQueue {
 
